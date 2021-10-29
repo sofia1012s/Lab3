@@ -1,21 +1,30 @@
 public class Texto extends Post {
+    private String texto;
 
-
-    public Texto(String autor, String fecha, String hora, int likes, String[] comentarios) {
-        super(autor, fecha, hora, likes, comentarios);
+    public Texto(String autor, String fecha, String hora) {
+        super(autor, fecha, hora);
         
     }
 
-    @Override
-    public void publicar() {
-        
-
+    public void contenido(String texto){
+        texto = this.texto;
     }
 
-    @Override
-    public String toString() {
+    public String[] publicar() {
+        String datos[] = {};
+
+        datos[0] = autor;
+        datos[1] = fecha;
+        datos[2] = hora;
+        datos[3] = texto;
        
-        return null;
+        return datos;
     }
+
+    /*@Override
+    public String toString() {
+        
+        return null;
+    }*/
 
 }

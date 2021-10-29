@@ -1,10 +1,10 @@
 public class Multimedia extends Post{
 
-    public Multimedia(String autor, String fecha, String hora, int likes, String[] comentarios) {
-        super(autor, fecha, hora, likes, comentarios);
+    public Multimedia(String autor, String fecha, String hora) {
+        super(autor, fecha, hora);
         
     }
-
+/*
     @Override
     public void publicar() {
         
@@ -16,5 +16,6 @@ public class Multimedia extends Post{
         
         return null;
     }
+    */
     
 }

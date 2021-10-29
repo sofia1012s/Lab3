@@ -1,10 +1,11 @@
 public class Emoticono extends Post{
 
-    public Emoticono(String autor, String fecha, String hora, int likes, String[] comentarios) {
-        super(autor, fecha, hora, likes, comentarios);
+    public Emoticono(String autor, String fecha, String hora) {
+        super(autor, fecha, hora);
         
     }
 
+    /*
     @Override
     public void publicar() {
         
@@ -16,5 +17,6 @@ public class Emoticono extends Post{
         
         return null;
     }
+    */
     
 }
