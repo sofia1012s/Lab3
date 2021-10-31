@@ -1,21 +1,19 @@
-public class Multimedia extends Post{
+public  abstract class Multimedia extends Post {
+    protected String URL;
+    protected float tamano;
 
-    public Multimedia(String autor, String fecha, String hora) {
+    public Multimedia(String autor, String fecha, String hora, String URL,float tamano) {
         super(autor, fecha, hora);
-        
-    }
-/*
-    @Override
-    public void publicar() {
-        
-        
+        this.URL = URL;
+        this.tamano = tamano;
     }
 
-    @Override
-    public String toString() {
-        
-        return null;
+    public String getURL() {
+        return URL;
     }
-    */
-    
+
+    public float getTamano() {
+        return tamano;
+    }
+
 }

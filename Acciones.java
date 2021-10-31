@@ -45,5 +45,25 @@ public class Acciones {
         return bandera;
     }
 
+    public boolean buscarFecha(Post post, String fecha) {
+        boolean bandera = false;
+        if (post.getFecha().contains(fecha)) {
+            bandera = true;
+
+        } else {
+            bandera = false;
+        }
+        return bandera;
+    }
+
+    public boolean buscarHashtag(Post post, String hashtag) {
+        boolean bandera = false;
+        for (int i = 0; i < post.gethashtags().size(); i++) {
+            if (post.gethashtags().get(i).contains(hashtag)) {
+                bandera = true;
+            } 
+        }
+        return bandera;
+    }
 
 }

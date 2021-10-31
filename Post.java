@@ -1,10 +1,16 @@
+import java.util.ArrayList;
+
 public abstract class Post {
     protected String autor;
     protected String fecha;
     protected String hora;
     protected int likes = 0;
+    protected String contenido;
+    protected int tipo = 0;
 
-    protected String[] comentarios = new String[] {};
+    ArrayList<String> comentarios = new ArrayList<String>();
+
+    ArrayList<String> hashtags = new ArrayList<String>();
 
     // public abstract void publicar(Post[] posts);
 
@@ -26,8 +32,20 @@ public abstract class Post {
         return autor;
     }
 
-    public String[] getComentarios() {
+    public void setComentario(String comentario) {
+        comentarios.add(comentario);
+    }
+
+    public ArrayList<String> getComentarios() {
         return comentarios;
+    } 
+
+    public void setHashtag(String hashtag) {
+        hashtags.add(hashtag);
+    }
+
+    public ArrayList<String> gethashtags() {
+        return hashtags; 
     }
 
     public String getFecha() {
@@ -41,4 +59,17 @@ public abstract class Post {
     public int getLikes() {
         return likes;
     }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
 }
