@@ -1,7 +1,20 @@
+/****************************************************************
+ * Controlador.java
+ * 
+ * @author Sofia Salguero
+ * @version 31/10/2021
+ * 
+ * Clase controlador, posee método main para correr el programa
+ ****************************************************************/
+
 import java.util.*;
 
 public class Controlador {
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         Vista vis = new Vista();
         Acciones ac = new Acciones();

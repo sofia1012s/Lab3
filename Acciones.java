@@ -1,8 +1,21 @@
+/****************************************************************
+ * Acciones.java
+ * 
+ * @author Sofia Salguero
+ * @version 31/10/2021
+ * 
+ * Clase pare realizar distintas acciones dentro del controlador
+ ****************************************************************/
 import java.text.*;
 import java.time.*;
 import java.time.format.*;
 
 public class Acciones {
+    
+    /** 
+     * @param fecha
+     * @return boolean
+     */
     public boolean checarFecha(String fecha) {
         boolean bandera = false;
 
@@ -21,6 +34,11 @@ public class Acciones {
         return bandera;
     }
 
+    
+    /** 
+     * @param hora
+     * @return boolean
+     */
     public boolean checarHora(String hora) {
         boolean bandera = false;
 
@@ -36,6 +54,11 @@ public class Acciones {
         return bandera;
     }
 
+    
+    /** 
+     * @param texto
+     * @return boolean
+     */
     public boolean checarTexto(String texto) {
         boolean bandera = false;
         if (texto.length() > 20) {
@@ -45,6 +68,12 @@ public class Acciones {
         return bandera;
     }
 
+    
+    /** 
+     * @param post
+     * @param fecha
+     * @return boolean
+     */
     public boolean buscarFecha(Post post, String fecha) {
         boolean bandera = false;
         if (post.getFecha().contains(fecha)) {
@@ -56,6 +85,12 @@ public class Acciones {
         return bandera;
     }
 
+    
+    /** 
+     * @param post
+     * @param hashtag
+     * @return boolean
+     */
     public boolean buscarHashtag(Post post, String hashtag) {
         boolean bandera = false;
         for (int i = 0; i < post.gethashtags().size(); i++) {

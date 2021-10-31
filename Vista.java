@@ -1,3 +1,13 @@
+/****************************************************************
+ * Vista.java
+ * 
+ * @author Sofia Salguero
+ * @version 31/10/2021
+ * 
+ * Clase para intercambiar información con el usuario y mostrar 
+ * mensajes
+ ****************************************************************/
+
 import java.util.*;
 
 public class Vista {
@@ -20,6 +30,11 @@ public class Vista {
                         + "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
     }
 
+    
+    /** 
+     * @param opcion
+     * @return int
+     */
     public int Menu(int opcion) {
         String Mensaje = "\nQue desea hacer?\n" + "1. Publicar post\n"
                 + "2. Ver post publicados en una fecha particular\n" + "3. Ver post que poseen un Hashtag en comun\n"
@@ -31,6 +46,11 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @param opcion
+     * @return int
+     */
     public int tipoPost(int opcion) {
         String Mensaje = "\nEscoja el tipo de post que desea realizar\n" + "1. Texto\n" + "2. Multimedia\n"
                 + "3. Emoticono\n" + "4. Regresar a menu principal\n";
@@ -41,6 +61,11 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @param opcion
+     * @return int
+     */
     public int interactuar(int opcion) {
         String Mensaje = "\nDesea comentar o darle like a esta publicacion? \n" + "1. Comentar\n" + "2. Like\n" + "3. Reproducir\n" + "4. Ninguna de las anteriores\n";
         System.out.println(
@@ -50,6 +75,10 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String agregarComentario() {
         scan.nextLine();
         System.out.print("\nIngrese su comentario (solo tienes 20 caracteres para expresarte): ");
@@ -66,12 +95,20 @@ public class Vista {
         System.out.println("\nIngresa los siguientes datos:");
     }
 
+    
+    /** 
+     * @return String
+     */
     public String ingresarAutor() {
         System.out.print("\nTu nombre: ");
         String autor = scan.next();
         return autor;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int ingresarHashtag() {
         System.out.println("\nDeseas agregar un hashtag? \n" + "1. Si\n" + "2. No\n");
         int opcion = scan.nextInt();
@@ -79,6 +116,10 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int ingresarHashtag2() {
         System.out.println("\nDeseas agregar otro hashtag? \n" + "1. Si\n" + "2. No\n");
         int opcion = scan.nextInt();
@@ -86,30 +127,50 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String hashtag() {
         System.out.print("\nIngresa el hashtag (ej: #poo): ");
         String hashtag = scan.next();
         return hashtag;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String ingresarFecha() {
         System.out.print("\nLa fecha de hoy (por favor escribela en el formato dd/MM/yyyy): ");
         String fecha = scan.next();
         return fecha;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String ingresarFechaBusqueda() {
         System.out.print("\nIngrese la fecha (por favor escribela en el formato dd/MM/yyyy): ");
         String fecha = scan.next();
         return fecha;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String ingresarHora() {
         System.out.print("\nLa hora actual (por favor escribela en el formato de 24 horas HH:mm): ");
         String hora = scan.next();
         return hora;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String texto() {
         scan.nextLine();
         System.out.print("\nQue hay en tu mente? (solo tienes 20 caracteres para expresarte): ");
@@ -117,12 +178,20 @@ public class Vista {
         return texto;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String emoticono() {
         System.out.print("\nIngresa tu emoticono (ej: u-u, :3, :( :p ): ");
         String texto = scan.next();
         return texto;
     }
 
+    
+    /** 
+     * @param texto
+     */
     public void mostrarTexto(Post texto) {
         System.out.println("\n--<>--<>--<>--<>--<>--<>--<>--<>----<>--<>--<>--<>--<>--<>--<>--<>--");
         System.out.println("\n" + texto.getAutor() + " - " + texto.getFecha() + " - " + texto.getHora());
@@ -149,6 +218,10 @@ public class Vista {
         }
     }
 
+    
+    /** 
+     * @param texto
+     */
     public void reproducitTexto(Post texto) {
         System.out.println("\n--<>--<>--<>--<>--<>--<>--<>--<>--Reproduciendo texto--<>--<>--<>--<>--<>--<>--<>--<>--");
         System.out.println("\n" + texto.getAutor() + " - " + texto.getFecha() + " - " + texto.getHora());
@@ -175,6 +248,10 @@ public class Vista {
         }
     }
 
+    
+    /** 
+     * @param emoticono
+     */
     public void mostrarEmoticono(Emoticono emoticono) {
         System.out.println("\n--<>--<>--<>--<>--<>--<>--<>--<>----<>--<>--<>--<>--<>--<>--<>--<>--");
         System.out.println("\n" + emoticono.getAutor() + " - " + emoticono.getFecha() + " - " + emoticono.getHora());
@@ -201,6 +278,10 @@ public class Vista {
         }
     }
 
+    
+    /** 
+     * @param emoticono
+     */
     public void reproducirEmoticono(Emoticono emoticono) {
         System.out.println("\n--<>--<>--<>--<>--<>--<>--<>--<>--Reproduciendo emoticono--<>--<>--<>--<>--<>--<>--<>--<>--");
         System.out.println("\n" + emoticono.getAutor() + " - " + emoticono.getFecha() + " - " + emoticono.getHora());
@@ -227,6 +308,10 @@ public class Vista {
         }
     }
 
+    
+    /** 
+     * @param imagen
+     */
     public void mostrarImagen(Imagen imagen) {
         System.out.println("\n--<>--<>--<>--<>--<>--<>--<>--<>----<>--<>--<>--<>--<>--<>--<>--<>--");
         System.out.println("\n" + imagen.getAutor() + " - " + imagen.getFecha() + " - " + imagen.getHora());
@@ -254,6 +339,10 @@ public class Vista {
         }
     }
 
+    
+    /** 
+     * @param imagen
+     */
     public void reproducirImagen(Imagen imagen) {
         System.out.println("\n--<>--<>--<>--<>--<>--<>--<>--<>--Reproduciendo imagen--<>--<>--<>--<>--<>--<>--<>--<>--");
         System.out.println("\n" + imagen.getAutor() + " - " + imagen.getFecha() + " - " + imagen.getHora());
@@ -281,6 +370,10 @@ public class Vista {
         }
     }
 
+    
+    /** 
+     * @param video
+     */
     public void reproducirVideo(Video video) {
         System.out.println("\n--<>--<>--<>--<>--<>--<>--<>--<>--Reproduciendo video--<>--<>--<>--<>--<>--<>--<>--<>--");
         System.out.println("\n" + video.getAutor() + " - " + video.getFecha() + " - " + video.getHora());
@@ -308,6 +401,10 @@ public class Vista {
         }
     }
 
+    
+    /** 
+     * @param video
+     */
     public void mostrarVideo(Video video) {
         System.out.println("\n--<>--<>--<>--<>--<>--<>--<>--<>----<>--<>--<>--<>--<>--<>--<>--<>--");
         System.out.println("\n" + video.getAutor() + " - " + video.getFecha() + " - " + video.getHora());
@@ -335,6 +432,10 @@ public class Vista {
         }
     }
 
+    
+    /** 
+     * @param audio
+     */
     public void mostrarAudio(Audio audio) {
         System.out.println("\n--<>--<>--<>--<>--<>--<>--<>--<>----<>--<>--<>--<>--<>--<>--<>--<>--");
         System.out.println("\n" + audio.getAutor() + " - " + audio.getFecha() + " - " + audio.getHora());
@@ -362,6 +463,10 @@ public class Vista {
         }
     }
 
+    
+    /** 
+     * @param audio
+     */
     public void reproducirAudio(Audio audio) {
         System.out.println("\n--<>--<>--<>--<>--<>--<>--<>--<>--Reproduciendo audio--<>--<>--<>--<>--<>--<>--<>--<>--");
         System.out.println("\n" + audio.getAutor() + " - " + audio.getFecha() + " - " + audio.getHora());
@@ -401,48 +506,80 @@ public class Vista {
         System.out.println("\nPor favor, selecciona una de las opciones en el menu.\n");
     }
 
+    
+    /** 
+     * @return String
+     */
     public String URL() {
         System.out.print("\nIngresa el URL de tu contenido: ");
         String URL = scan.next();
         return URL;
     }
 
+    
+    /** 
+     * @return float
+     */
     public float tamano() {
         System.out.print("\nIngresa el tamano en kilobytes: ");
         float tamano = scan.nextFloat();
         return tamano;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String formato() {
         System.out.print("\nIngresa el formato de tu imagen (png, gif, jpeg, etc.): \n");
         String formato = scan.next();
         return formato;
     }
 
+    
+    /** 
+     * @return float
+     */
     public float resolucion() {
         System.out.print("\nIngresa la resolucion de tu imagen en megapixeles: ");
         float resolucion = scan.nextFloat();
         return resolucion;
     }
 
+    
+    /** 
+     * @return float
+     */
     public float sampleRate() {
         System.out.print("\nIngresa el sample rate de tu audio: ");
         float sampleRate = scan.nextFloat();
         return sampleRate;
     }
 
+    
+    /** 
+     * @return float
+     */
     public float bitDepth() {
         System.out.print("\nIngresa el bit depth de tu audio: ");
         float bitDepth = scan.nextFloat();
         return bitDepth;
     }
 
+    
+    /** 
+     * @return float
+     */
     public float fps() {
         System.out.print("\nIngresa el frame rate de tu video: ");
         float fps = scan.nextFloat();
         return fps;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int tipoMultimedia() {
         String Mensaje = "\nEscoja el tipo de archivo multimedia que subira\n" + "1. Imagen\n" + "2. Video\n"
                 + "3. Audio\n";
@@ -453,6 +590,10 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @param contador
+     */
     public void numeroPost(int contador){
         System.out.println("\n" + "| " + contador + " |");
     }
