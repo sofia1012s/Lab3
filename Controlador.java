@@ -31,6 +31,15 @@ public class Controlador {
 
         allTexto.add(textoInicio);
 
+        Imagen imagenInicio = new Imagen("Paola", "30/10/2021", "18:26",
+                "https://live.staticflickr.com/65535/48997185732_81ac11fd30_o.png", 25, "PNG", 1170);
+        imagenInicio.darleLike();
+        imagenInicio.setHashtag("#Halloween");
+        imagenInicio.setHashtag("#Disfraz");
+        imagenInicio.setComentario("Que lindo maquillaje");
+
+        allImagen.add(imagenInicio);
+
         vis.Inicio();
 
         while (opcionMenu != 5) {
@@ -427,17 +436,11 @@ public class Controlador {
                             default:
                                 vis.fueraMenu();
                                 /*
-                                do {
-                                    try {
-                                        vis = new Vista();
-                                        tipoMultimedia = vis.tipoMultimedia();
-                                        p = true;
-                                    } catch (InputMismatchException ex) {
-                                        System.out.println("\nPor favor, ingresa un numero");
-                                        p = false;
-                                    }
-                                } while (!p);
-                                */
+                                 * do { try { vis = new Vista(); tipoMultimedia = vis.tipoMultimedia(); p =
+                                 * true; } catch (InputMismatchException ex) {
+                                 * System.out.println("\nPor favor, ingresa un numero"); p = false; } } while
+                                 * (!p);
+                                 */
                                 break;
                             }
                         }
@@ -456,7 +459,7 @@ public class Controlador {
                         while (banderaFechaE == true) {
                             vis.formatoIncorrecto();
                             fechaE = vis.ingresarFecha();
-                            banderaFecha = ac.checarFecha(fechaE);
+                            banderaFechaE = ac.checarFecha(fechaE);
                         }
 
                         String horaE = vis.ingresarHora();
@@ -538,35 +541,624 @@ public class Controlador {
                 break;
 
             case 2: // Ver post publicados en una fecha particular
+                String fecha = vis.ingresarFechaBusqueda();
+                boolean banderaFecha = ac.checarFecha(fecha);
+                int contador = 0;
+
+                while (banderaFecha == true) {
+                    vis.formatoIncorrecto();
+                    fecha = vis.ingresarFecha();
+                    banderaFecha = ac.checarFecha(fecha);
+                }
+
+                for (int i = 0; i < allTexto.size(); i++) {
+                    boolean found = ac.buscarFecha(allTexto.get(i), fecha);
+                    if (found == true) {
+                        contador++;
+                        vis.numeroPost(contador);
+                        vis.mostrarTexto(allTexto.get(i));
+                        boolean salida2 = false;
+
+                        while (salida2 == false) {
+                            int opcion3 = 0;
+                            do {
+                                try {
+                                    vis = new Vista();
+                                    opcion3 = vis.interactuar(opcion3);
+                                    p = true;
+                                } catch (InputMismatchException ex) {
+                                    System.out.println("\nPor favor, ingresa un numero");
+                                    p = false;
+                                }
+                            } while (!p);
+
+                            switch (opcion3) {
+                            case 1: // comentar
+                                String comentario = vis.agregarComentario();
+
+                                boolean banderaLimiteT = ac.checarTexto(comentario);
+
+                                while (banderaLimiteT == true) {
+                                    vis.textoLargo();
+                                    comentario = vis.texto();
+                                    banderaLimiteT = ac.checarTexto(comentario);
+                                }
+
+                                allTexto.get(i).setComentario(comentario);
+                                vis.comentarioAgregado();
+                                salida2 = true;
+                                break;
+                            case 2: // dar like
+                                allTexto.get(i).darleLike();
+                                vis.likeAgregado();
+                                salida2 = true;
+                                break;
+                            case 3:
+                                vis.reproducitTexto(allTexto.get(i));
+                                salida2 = true;
+                                break;
+                            case 4: // ninguna
+                                salida2 = true;
+                                break;
+                            default:
+                                vis.fueraMenu();
+                                break;
+                            }
+
+                        }
+
+                    }
+                }
+
+                for (int i = 0; i < allImagen.size(); i++) {
+                    boolean found = ac.buscarFecha(allImagen.get(i), fecha);
+                    if (found == true) {
+                        contador++;
+                        vis.numeroPost(contador);
+                        vis.mostrarImagen(allImagen.get(i));
+                        boolean salida2 = false;
+                        while (salida2 == false) {
+                            int opcion3 = 0;
+                            do {
+                                try {
+                                    vis = new Vista();
+                                    opcion3 = vis.interactuar(opcion3);
+                                    p = true;
+                                } catch (InputMismatchException ex) {
+                                    System.out.println("\nPor favor, ingresa un numero");
+                                    p = false;
+                                }
+                            } while (!p);
+
+                            switch (opcion3) {
+                            case 1: // comentar
+                                String comentario = vis.agregarComentario();
+
+                                boolean banderaLimiteT = ac.checarTexto(comentario);
+
+                                while (banderaLimiteT == true) {
+                                    vis.textoLargo();
+                                    comentario = vis.texto();
+                                    banderaLimiteT = ac.checarTexto(comentario);
+                                }
+
+                                allImagen.get(i).setComentario(comentario);
+                                vis.comentarioAgregado();
+                                salida2 = true;
+                                break;
+                            case 2: // dar like
+                                allImagen.get(i).darleLike();
+                                vis.likeAgregado();
+                                salida2 = true;
+                                break;
+                            case 3:
+                                vis.reproducirImagen(allImagen.get(i));
+                                salida2 = true;
+                                break;
+
+                            case 4: // ninguna
+                                salida2 = true;
+                                break;
+                            default:
+                                vis.fueraMenu();
+                                break;
+                            }
+
+                        }
+
+                    }
+                }
+
+                for (int i = 0; i < allVideo.size(); i++) {
+                    boolean found = ac.buscarFecha(allVideo.get(i), fecha);
+                    if (found == true) {
+                        contador++;
+                        vis.numeroPost(contador);
+                        vis.mostrarVideo(allVideo.get(i));
+
+                        boolean salida2 = false;
+                        while (salida2 == false) {
+                            int opcion3 = 0;
+                            do {
+                                try {
+                                    vis = new Vista();
+                                    opcion3 = vis.interactuar(opcion3);
+                                    p = true;
+                                } catch (InputMismatchException ex) {
+                                    System.out.println("\nPor favor, ingresa un numero");
+                                    p = false;
+                                }
+                            } while (!p);
+
+                            switch (opcion3) {
+                            case 1: // comentar
+                                String comentario = vis.agregarComentario();
+
+                                boolean banderaLimiteT = ac.checarTexto(comentario);
+
+                                while (banderaLimiteT == true) {
+                                    vis.textoLargo();
+                                    comentario = vis.texto();
+                                    banderaLimiteT = ac.checarTexto(comentario);
+                                }
+
+                                allVideo.get(i).setComentario(comentario);
+                                vis.comentarioAgregado();
+                                salida2 = true;
+                                break;
+                            case 2: // dar like
+                                allVideo.get(i).darleLike();
+                                vis.likeAgregado();
+                                salida2 = true;
+                                break;
+
+                            case 3:
+                                vis.reproducirVideo(allVideo.get(i));
+                                salida2 = true;
+                                break;
+
+                            case 4: // ninguna
+                                salida2 = true;
+                                break;
+                            default:
+                                vis.fueraMenu();
+                                break;
+                            }
+
+                        }
+                    }
+                }
+
+                for (int i = 0; i < allAudio.size(); i++) {
+                    boolean found = ac.buscarFecha(allAudio.get(i), fecha);
+                    if (found == true) {
+                        contador++;
+                        vis.numeroPost(contador);
+                        vis.mostrarAudio(allAudio.get(i));
+
+                        boolean salida2 = false;
+                        while (salida2 == false) {
+                            int opcion3 = 0;
+                            do {
+                                try {
+                                    vis = new Vista();
+                                    opcion3 = vis.interactuar(opcion3);
+                                    p = true;
+                                } catch (InputMismatchException ex) {
+                                    System.out.println("\nPor favor, ingresa un numero");
+                                    p = false;
+                                }
+                            } while (!p);
+
+                            switch (opcion3) {
+                            case 1: // comentar
+                                String comentario = vis.agregarComentario();
+
+                                boolean banderaLimiteT = ac.checarTexto(comentario);
+
+                                while (banderaLimiteT == true) {
+                                    vis.textoLargo();
+                                    comentario = vis.texto();
+                                    banderaLimiteT = ac.checarTexto(comentario);
+                                }
+
+                                allAudio.get(i).setComentario(comentario);
+                                vis.comentarioAgregado();
+                                salida2 = true;
+                                break;
+                            case 2: // dar like
+                                allAudio.get(i).darleLike();
+                                vis.likeAgregado();
+                                salida2 = true;
+                                break;
+
+                            case 3:
+                                vis.reproducirAudio(allAudio.get(i));
+                                break;
+                            case 4: // ninguna
+                                salida2 = true;
+                                break;
+                            default:
+                                vis.fueraMenu();
+                                break;
+                            }
+
+                        }
+                    }
+                }
+
+                for (int i = 0; i < allEmoticono.size(); i++) {
+                    boolean found = ac.buscarFecha(allEmoticono.get(i), fecha);
+                    if (found == true) {
+                        contador++;
+                        vis.numeroPost(contador);
+                        vis.mostrarEmoticono(allEmoticono.get(i));
+
+                        boolean salida2 = false;
+                        while (salida2 == false) {
+                            int opcion3 = 0;
+                            do {
+                                try {
+                                    vis = new Vista();
+                                    opcion3 = vis.interactuar(opcion3);
+                                    p = true;
+                                } catch (InputMismatchException ex) {
+                                    System.out.println("\nPor favor, ingresa un numero");
+                                    p = false;
+                                }
+                            } while (!p);
+
+                            switch (opcion3) {
+                            case 1: // comentar
+                                String comentario = vis.agregarComentario();
+
+                                boolean banderaLimiteT = ac.checarTexto(comentario);
+
+                                while (banderaLimiteT == true) {
+                                    vis.textoLargo();
+                                    comentario = vis.texto();
+                                    banderaLimiteT = ac.checarTexto(comentario);
+                                }
+
+                                allEmoticono.get(i).setComentario(comentario);
+                                vis.comentarioAgregado();
+                                salida2 = true;
+                                break;
+                            case 2: // dar like
+                                allEmoticono.get(i).darleLike();
+                                vis.likeAgregado();
+                                salida2 = true;
+                                break;
+
+                            case 3:
+                                vis.reproducirEmoticono(allEmoticono.get(i));
+                                break;
+                            case 4: // ninguna
+                                salida2 = true;
+                                break;
+                            default:
+                                vis.fueraMenu();
+                                break;
+                            }
+
+                        }
+                    }
+                }
+
+                if (contador == 0) {
+                    vis.noPosts();
+                }
 
                 break;
 
             case 3: // Ver post que poseen un Hashtag en común
+                String hashtag = vis.hashtag();
+                int contadorh = 0;
+
+                for (int i = 0; i < allTexto.size(); i++) {
+                    boolean found = ac.buscarHashtag(allTexto.get(i), hashtag);
+                    if (found == true) {
+                        contadorh++;
+                        vis.numeroPost(contadorh);
+                        vis.mostrarTexto(allTexto.get(i));
+
+                        boolean salida2 = false;
+                        while (salida2 == false) {
+                            int opcion3 = 0;
+                            do {
+                                try {
+                                    vis = new Vista();
+                                    opcion3 = vis.interactuar(opcion3);
+                                    p = true;
+                                } catch (InputMismatchException ex) {
+                                    System.out.println("\nPor favor, ingresa un numero");
+                                    p = false;
+                                }
+                            } while (!p);
+
+                            switch (opcion3) {
+                            case 1: // comentar
+                                String comentario = vis.agregarComentario();
+
+                                boolean banderaLimiteT = ac.checarTexto(comentario);
+
+                                while (banderaLimiteT == true) {
+                                    vis.textoLargo();
+                                    comentario = vis.texto();
+                                    banderaLimiteT = ac.checarTexto(comentario);
+                                }
+
+                                allTexto.get(i).setComentario(comentario);
+                                vis.comentarioAgregado();
+                                salida2 = true;
+                                break;
+                            case 2: // dar like
+                                allTexto.get(i).darleLike();
+                                vis.likeAgregado();
+                                salida2 = true;
+                                break;
+                            case 3: // ninguna
+                                salida2 = true;
+                            default:
+                                vis.fueraMenu();
+                                break;
+                            }
+
+                        }
+                    }
+                }
+
+                for (int i = 0; i < allImagen.size(); i++) {
+                    boolean found = ac.buscarHashtag(allImagen.get(i), hashtag);
+                    if (found == true) {
+                        contadorh++;
+                        vis.numeroPost(contadorh);
+                        vis.mostrarImagen(allImagen.get(i));
+
+                        boolean salida2 = false;
+                        while (salida2 == false) {
+                            int opcion3 = 0;
+                            do {
+                                try {
+                                    vis = new Vista();
+                                    opcion3 = vis.interactuar(opcion3);
+                                    p = true;
+                                } catch (InputMismatchException ex) {
+                                    System.out.println("\nPor favor, ingresa un numero");
+                                    p = false;
+                                }
+                            } while (!p);
+
+                            switch (opcion3) {
+                            case 1: // comentar
+                                String comentario = vis.agregarComentario();
+
+                                boolean banderaLimiteT = ac.checarTexto(comentario);
+
+                                while (banderaLimiteT == true) {
+                                    vis.textoLargo();
+                                    comentario = vis.texto();
+                                    banderaLimiteT = ac.checarTexto(comentario);
+                                }
+
+                                allImagen.get(i).setComentario(comentario);
+                                vis.comentarioAgregado();
+                                salida2 = true;
+                                break;
+                            case 2: // dar like
+                                allImagen.get(i).darleLike();
+                                vis.likeAgregado();
+                                salida2 = true;
+                                break;
+                            case 3: // ninguna
+                                salida2 = true;
+                            default:
+                                vis.fueraMenu();
+                                break;
+                            }
+
+                        }
+                    }
+                }
+
+                for (int i = 0; i < allVideo.size(); i++) {
+                    boolean found = ac.buscarHashtag(allVideo.get(i), hashtag);
+                    if (found == true) {
+                        contadorh++;
+                        vis.numeroPost(contadorh);
+                        vis.mostrarVideo(allVideo.get(i));
+
+                        boolean salida2 = false;
+                        while (salida2 == false) {
+                            int opcion3 = 0;
+                            do {
+                                try {
+                                    vis = new Vista();
+                                    opcion3 = vis.interactuar(opcion3);
+                                    p = true;
+                                } catch (InputMismatchException ex) {
+                                    System.out.println("\nPor favor, ingresa un numero");
+                                    p = false;
+                                }
+                            } while (!p);
+
+                            switch (opcion3) {
+                            case 1: // comentar
+                                String comentario = vis.agregarComentario();
+
+                                boolean banderaLimiteT = ac.checarTexto(comentario);
+
+                                while (banderaLimiteT == true) {
+                                    vis.textoLargo();
+                                    comentario = vis.texto();
+                                    banderaLimiteT = ac.checarTexto(comentario);
+                                }
+
+                                allVideo.get(i).setComentario(comentario);
+                                vis.comentarioAgregado();
+                                salida2 = true;
+                                break;
+                            case 2: // dar like
+                                allVideo.get(i).darleLike();
+                                vis.likeAgregado();
+                                salida2 = true;
+                                break;
+                            case 3: // ninguna
+                                salida2 = true;
+                            default:
+                                vis.fueraMenu();
+                                break;
+                            }
+
+                        }
+                    }
+                }
+
+                for (int i = 0; i < allAudio.size(); i++) {
+                    boolean found = ac.buscarHashtag(allAudio.get(i), hashtag);
+                    if (found == true) {
+                        contadorh++;
+                        vis.numeroPost(contadorh);
+                        vis.mostrarAudio(allAudio.get(i));
+
+                        boolean salida2 = false;
+                        while (salida2 == false) {
+                            int opcion3 = 0;
+                            do {
+                                try {
+                                    vis = new Vista();
+                                    opcion3 = vis.interactuar(opcion3);
+                                    p = true;
+                                } catch (InputMismatchException ex) {
+                                    System.out.println("\nPor favor, ingresa un numero");
+                                    p = false;
+                                }
+                            } while (!p);
+
+                            switch (opcion3) {
+                            case 1: // comentar
+                                String comentario = vis.agregarComentario();
+
+                                boolean banderaLimiteT = ac.checarTexto(comentario);
+
+                                while (banderaLimiteT == true) {
+                                    vis.textoLargo();
+                                    comentario = vis.texto();
+                                    banderaLimiteT = ac.checarTexto(comentario);
+                                }
+
+                                allAudio.get(i).setComentario(comentario);
+                                vis.comentarioAgregado();
+                                salida2 = true;
+                                break;
+                            case 2: // dar like
+                                allAudio.get(i).darleLike();
+                                vis.likeAgregado();
+                                salida2 = true;
+                                break;
+                            case 3: // ninguna
+                                salida2 = true;
+                            default:
+                                vis.fueraMenu();
+                                break;
+                            }
+
+                        }
+                    }
+                }
+
+                for (int i = 0; i < allEmoticono.size(); i++) {
+                    boolean found = ac.buscarHashtag(allEmoticono.get(i), hashtag);
+                    if (found == true) {
+                        contadorh++;
+                        vis.numeroPost(contadorh);
+                        vis.mostrarEmoticono(allEmoticono.get(i));
+
+                        boolean salida2 = false;
+                        while (salida2 == false) {
+                            int opcion3 = 0;
+                            do {
+                                try {
+                                    vis = new Vista();
+                                    opcion3 = vis.interactuar(opcion3);
+                                    p = true;
+                                } catch (InputMismatchException ex) {
+                                    System.out.println("\nPor favor, ingresa un numero");
+                                    p = false;
+                                }
+                            } while (!p);
+
+                            switch (opcion3) {
+                            case 1: // comentar
+                                String comentario = vis.agregarComentario();
+
+                                boolean banderaLimiteT = ac.checarTexto(comentario);
+
+                                while (banderaLimiteT == true) {
+                                    vis.textoLargo();
+                                    comentario = vis.texto();
+                                    banderaLimiteT = ac.checarTexto(comentario);
+                                }
+
+                                allEmoticono.get(i).setComentario(comentario);
+                                vis.comentarioAgregado();
+                                salida2 = true;
+                                break;
+                            case 2: // dar like
+                                allEmoticono.get(i).darleLike();
+                                vis.likeAgregado();
+                                salida2 = true;
+                                break;
+                            case 3: // ninguna
+                                salida2 = true;
+                            default:
+                                vis.fueraMenu();
+                                break;
+                            }
+
+                        }
+                    }
+                }
+
+                if (contadorh == 0) {
+                    vis.noPosts();
+                }
 
                 break;
 
             case 4: // Ver todos los post
+                int contador2 = 0;
                 if (allTexto.size() == 0 && allAudio.size() == 0 && allVideo.size() == 0 && allImagen.size() == 0
                         && allEmoticono.size() == 0) {
                     vis.noPosts();
                 } else {
                     for (int i = 0; i < allTexto.size(); i++) {
+                        contador2++;
+                        vis.numeroPost(contador2);
                         vis.mostrarTexto(allTexto.get(i));
                     }
 
                     for (int i = 0; i < allEmoticono.size(); i++) {
+                        contador2++;
+                        vis.numeroPost(contador2);
                         vis.mostrarEmoticono(allEmoticono.get(i));
                     }
 
                     for (int i = 0; i < allImagen.size(); i++) {
+                        contador2++;
+                        vis.numeroPost(contador2);
                         vis.mostrarImagen(allImagen.get(i));
                     }
 
                     for (int i = 0; i < allVideo.size(); i++) {
+                        contador2++;
+                        vis.numeroPost(contador2);
                         vis.mostrarVideo(allVideo.get(i));
                     }
 
                     for (int i = 0; i < allAudio.size(); i++) {
+                        contador2++;
+                        vis.numeroPost(contador2);
                         vis.mostrarAudio(allAudio.get(i));
                     }
 

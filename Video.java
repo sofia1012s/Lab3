@@ -10,4 +10,9 @@ public class Video extends Multimedia{
     public float getFps() {
         return fps;
     }
+
+    @Override
+    public void setContenido(String contenido) {
+        
+    }
 }

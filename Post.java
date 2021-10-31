@@ -12,16 +12,13 @@ public abstract class Post {
 
     ArrayList<String> hashtags = new ArrayList<String>();
 
-    // public abstract void publicar(Post[] posts);
-
-    //public abstract String toString();
-
     public Post(String autor, String fecha, String hora) {
         this.autor = autor;
         this.fecha = fecha;
         this.hora = hora;
     }
 
+    public abstract void setContenido(String contenido);
 
     public void darleLike() {
         likes++;
@@ -60,9 +57,6 @@ public abstract class Post {
         return likes;
     }
 
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
-    }
 
     public String getContenido() {
         return contenido;

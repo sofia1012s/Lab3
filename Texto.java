@@ -10,10 +10,4 @@ public class Texto extends Post {
         contenido = texto;
     }
 
-    /*
-     * @Override public String toString() {
-     * 
-     * return null; }
-     */
-
 }

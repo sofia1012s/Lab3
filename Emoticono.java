@@ -5,18 +5,11 @@ public class Emoticono extends Post{
         tipo = 5;
     }
 
-    /*
     @Override
-    public void publicar() {
-        
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
         
     }
 
-    @Override
-    public String toString() {
-        
-        return null;
-    }
-    */
     
 }

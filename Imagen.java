@@ -17,6 +17,11 @@ public class Imagen extends Multimedia{
         return resolucion;
     }
 
+    @Override
+    public void setContenido(String contenido) {
+        
+    }
+
 
 
 }

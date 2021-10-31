@@ -41,15 +41,25 @@ public class Vista {
         return opcion;
     }
 
-    public String agregarComentario(String comentario) {
-        System.out.println("\nIngrese su comentario (no puede exceder los 20 caracteres):");
-        comentario = scan.next();
+    public int interactuar(int opcion) {
+        String Mensaje = "\nDesea comentar o darle like a esta publicacion? \n" + "1. Comentar\n" + "2. Like\n" + "3. Reproducir\n" + "4. Ninguna de las anteriores\n";
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+        opcion = scan.nextInt();
+        return opcion;
+    }
+
+    public String agregarComentario() {
+        scan.nextLine();
+        System.out.print("\nIngrese su comentario (solo tienes 20 caracteres para expresarte): ");
+        String comentario = scan.nextLine();
 
         return comentario;
     }
 
     public void textoLargo() {
-        System.out.println("\nHa superado los 20 caracteres, no se puede publicar su comentario." + "\n");
+        System.out.println("\nHa superado los 20 caracteres, no se puede publicar su comentario. Presiona enter para intentar nuevamente" + "\n");
     }
 
     public void ingresarDatos() {
@@ -84,6 +94,12 @@ public class Vista {
 
     public String ingresarFecha() {
         System.out.print("\nLa fecha de hoy (por favor escribela en el formato dd/MM/yyyy): ");
+        String fecha = scan.next();
+        return fecha;
+    }
+
+    public String ingresarFechaBusqueda() {
+        System.out.print("\nIngrese la fecha (por favor escribela en el formato dd/MM/yyyy): ");
         String fecha = scan.next();
         return fecha;
     }
@@ -133,6 +149,32 @@ public class Vista {
         }
     }
 
+    public void reproducitTexto(Post texto) {
+        System.out.println("\n--<>--<>--<>--<>--<>--<>--<>--<>--Reproduciendo texto--<>--<>--<>--<>--<>--<>--<>--<>--");
+        System.out.println("\n" + texto.getAutor() + " - " + texto.getFecha() + " - " + texto.getHora());
+        ArrayList<String> hashtags = texto.gethashtags();
+        if (hashtags.size() <= 0) {
+            System.out.println(" ");
+        } else {
+            for (int i = 0; i < hashtags.size(); i++) {
+                System.out.print(hashtags.get(i) + " ");
+            }
+        }
+
+        System.out.println("\n" + texto.getContenido());
+        System.out.println("\nLikes: " + texto.getLikes());
+        System.out.println("\nComentarios: ");
+        ArrayList<String> comentarios = texto.getComentarios();
+        if (comentarios.size() <= 0) {
+            System.out.println("\nNo hay comentarios por mostrar");
+        } else {
+            for (int i = 0; i < comentarios.size(); i++) {
+                System.out.println("\n" + "-" + comentarios.get(i));
+            }
+
+        }
+    }
+
     public void mostrarEmoticono(Emoticono emoticono) {
         System.out.println("\n--<>--<>--<>--<>--<>--<>--<>--<>----<>--<>--<>--<>--<>--<>--<>--<>--");
         System.out.println("\n" + emoticono.getAutor() + " - " + emoticono.getFecha() + " - " + emoticono.getHora());
@@ -146,6 +188,32 @@ public class Vista {
         }
 
         System.out.println("\n" + "( " + "Emoticono" + " ) " + emoticono.getContenido());
+        System.out.println("\nLikes: " + emoticono.getLikes());
+        System.out.println("\nComentarios: ");
+        ArrayList<String> comentarios = emoticono.getComentarios();
+        if (comentarios.size() <= 0) {
+            System.out.println("\nNo hay comentarios por mostrar");
+        } else {
+            for (int i = 0; i < comentarios.size(); i++) {
+                System.out.println("\n" + "-" + comentarios.get(i));
+            }
+
+        }
+    }
+
+    public void reproducirEmoticono(Emoticono emoticono) {
+        System.out.println("\n--<>--<>--<>--<>--<>--<>--<>--<>--Reproduciendo emoticono--<>--<>--<>--<>--<>--<>--<>--<>--");
+        System.out.println("\n" + emoticono.getAutor() + " - " + emoticono.getFecha() + " - " + emoticono.getHora());
+        ArrayList<String> hashtags = emoticono.gethashtags();
+        if (hashtags.size() <= 0) {
+            System.out.println(" ");
+        } else {
+            for (int i = 0; i < hashtags.size(); i++) {
+                System.out.print(hashtags.get(i) + " ");
+            }
+        }
+
+        System.out.println("\n" + emoticono.getContenido());
         System.out.println("\nLikes: " + emoticono.getLikes());
         System.out.println("\nComentarios: ");
         ArrayList<String> comentarios = emoticono.getComentarios();
@@ -176,6 +244,60 @@ public class Vista {
         System.out.println("\nLikes: " + imagen.getLikes());
         System.out.println("\nComentarios: ");
         ArrayList<String> comentarios = imagen.getComentarios();
+        if (comentarios.size() <= 0) {
+            System.out.println("\nNo hay comentarios por mostrar");
+        } else {
+            for (int i = 0; i < comentarios.size(); i++) {
+                System.out.println("\n" + "-" + comentarios.get(i));
+            }
+
+        }
+    }
+
+    public void reproducirImagen(Imagen imagen) {
+        System.out.println("\n--<>--<>--<>--<>--<>--<>--<>--<>--Reproduciendo imagen--<>--<>--<>--<>--<>--<>--<>--<>--");
+        System.out.println("\n" + imagen.getAutor() + " - " + imagen.getFecha() + " - " + imagen.getHora());
+        ArrayList<String> hashtags = imagen.gethashtags();
+        if (hashtags.size() <= 0) {
+            System.out.println(" ");
+        } else {
+            for (int i = 0; i < hashtags.size(); i++) {
+                System.out.print(hashtags.get(i) + " ");
+            }
+        }
+
+        System.out.println("\n" + imagen.getURL() + "\n" + imagen.getTamano() + " KB, "
+                + imagen.getFormato() + ", " +  imagen.getResolucion() + " Megapixeles");
+        System.out.println("\nLikes: " + imagen.getLikes());
+        System.out.println("\nComentarios: ");
+        ArrayList<String> comentarios = imagen.getComentarios();
+        if (comentarios.size() <= 0) {
+            System.out.println("\nNo hay comentarios por mostrar");
+        } else {
+            for (int i = 0; i < comentarios.size(); i++) {
+                System.out.println("\n" + "-" + comentarios.get(i));
+            }
+
+        }
+    }
+
+    public void reproducirVideo(Video video) {
+        System.out.println("\n--<>--<>--<>--<>--<>--<>--<>--<>--Reproduciendo video--<>--<>--<>--<>--<>--<>--<>--<>--");
+        System.out.println("\n" + video.getAutor() + " - " + video.getFecha() + " - " + video.getHora());
+        ArrayList<String> hashtags = video.gethashtags();
+        if (hashtags.size() <= 0) {
+            System.out.println(" ");
+        } else {
+            for (int i = 0; i < hashtags.size(); i++) {
+                System.out.print(hashtags.get(i) + " ");
+            }
+        }
+
+        System.out.println("\n" + video.getURL() + "\n" + video.getTamano() + " KB, "
+                + "FrameRate: " + video.getFps() + " fps");
+        System.out.println("\nLikes: " + video.getLikes());
+        System.out.println("\nComentarios: ");
+        ArrayList<String> comentarios = video.getComentarios();
         if (comentarios.size() <= 0) {
             System.out.println("\nNo hay comentarios por mostrar");
         } else {
@@ -226,6 +348,33 @@ public class Vista {
         }
 
         System.out.println("\n" + "( " + "Audio" + " ) " + audio.getURL() + "\n" + audio.getTamano() + " KB, "
+                + "SampleRate: " + audio.getSampleRate() + " kHz, " + "BitDepth: " + audio.getBitDepth());
+        System.out.println("\nLikes: " + audio.getLikes());
+        System.out.println("\nComentarios: ");
+        ArrayList<String> comentarios = audio.getComentarios();
+        if (comentarios.size() <= 0) {
+            System.out.println("\nNo hay comentarios por mostrar");
+        } else {
+            for (int i = 0; i < comentarios.size(); i++) {
+                System.out.println("\n" + "-" + comentarios.get(i));
+            }
+
+        }
+    }
+
+    public void reproducirAudio(Audio audio) {
+        System.out.println("\n--<>--<>--<>--<>--<>--<>--<>--<>--Reproduciendo audio--<>--<>--<>--<>--<>--<>--<>--<>--");
+        System.out.println("\n" + audio.getAutor() + " - " + audio.getFecha() + " - " + audio.getHora());
+        ArrayList<String> hashtags = audio.gethashtags();
+        if (hashtags.size() <= 0) {
+            System.out.println(" ");
+        } else {
+            for (int i = 0; i < hashtags.size(); i++) {
+                System.out.print(hashtags.get(i) + " ");
+            }
+        }
+
+        System.out.println("\n" + audio.getURL() + "\n" + audio.getTamano() + " KB, "
                 + "SampleRate: " + audio.getSampleRate() + " kHz, " + "BitDepth: " + audio.getBitDepth());
         System.out.println("\nLikes: " + audio.getLikes());
         System.out.println("\nComentarios: ");
@@ -302,5 +451,17 @@ public class Vista {
                         + Mensaje);
         int opcion = scan.nextInt();
         return opcion;
+    }
+
+    public void numeroPost(int contador){
+        System.out.println("\n" + "| " + contador + " |");
+    }
+
+    public void comentarioAgregado(){
+        System.out.println("\nTu comentario se ha agregado con exito.");
+    }
+
+    public void likeAgregado(){
+        System.out.println("\nLe has dado like a la publicacion.");
     }
 }

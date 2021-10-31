@@ -18,4 +18,9 @@ public class Audio extends Multimedia {
         return bitDepth;
     }
 
+    @Override
+    public void setContenido(String contenido) {
+        
+    }
+
 }
